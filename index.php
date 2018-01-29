@@ -1,3 +1,8 @@
+<?
+
+session_start();
+$_SESSION['loader'] = 0;
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -37,6 +42,10 @@
 			.add-more {
 				margin: 15px;
 			}
+			.brick img {
+				width: 100%;
+				height: 100%;
+			}
 	</style>
 
 </head>
@@ -66,51 +75,29 @@
 				</div>
 				
 		<div class="col-md-12">
+
+			<div id="post_b">
+			    
+			</div>
+			<div id="loadingbar"></div>
+			
+			<div id="post_i">
+			    
+			</div>
 		<div id="freewall" class="free-wall">
-			<div class="brick size22">
-				<div class='cover'>
-					
-				</div>
-			</div>
-			<div class="brick size11" data-fixSize=0>
-				<div class='cover'>
-					
-				</div>
-			</div>
-            <div class="brick size22" data-fixSize=0>
-                <div class='cover'>
-                    
-                </div>
-            </div>
-            <div class="brick size11" data-fixSize=0>
-                <div class='cover'>
-                    
-                </div>
-            </div>
-            <div class="brick size11" data-fixSize=0>
-                <div class='cover'>
-                    
-                </div>
-            </div>
-            <div class="brick size11" data-fixSize=0>
-                <div class='cover'>
-                    
-                </div>
-            </div>
-            <div class="brick size21" data-fixSize=0>
-                <div class='cover'>
-                    
-                </div>
-            </div>
+			
+			
 		</div>
 		<div class="brick size11 add-more">
 			<div class='cover'>
 				<h2>Загрузить</h2>
 			</div>
 		</div>
-		</div>
-		<script type="text/javascript">
+	</div>
 
+		<script type="text/javascript">
+			var token = '5618492160.d4af114.5a67f687b3f14e54a25626b9c18a8a39',
+			num_photos = 300;
 			var colour = [
 				"rgb(142, 68, 173)",
 				"rgb(243, 156, 18)",
@@ -140,22 +127,28 @@
 				});
 				wall.fitWidth();
 
-				var temp = '<div class="brick {size}" style="background-color: {color}"><div class="cover"></div></div>';
-				var size = "size33 size32 size31 size23 size22 size21 size13 size12 size11".split(" ");
+				var temp = '<div class="brick {size}" style="background-color: {color}">{content}</div>';
+				var size = "size33 size22 size11".split(" ");
 				$(".add-more").click(function() {
 					var html = "";
-					for (var i = 0; i < 3; ++i) {
-						html += temp.replace('{size}', size[size.length * Math.random() << 0])
-									.replace('{color}', colour[colour.length * Math.random() << 0]);
-					}
-					wall.prepend(html);
+					//for (var i = 0; i < 3; ++i) {
+						$.get('php/loader.php', function ( data ) {
+					        if( data != 'end' ) {
+					            //$('#freewall').append( data );
+					            //temp = data;
+					            html += temp.replace('{size}', size[size.length * Math.random() << 0])
+									.replace('{content}', data);
+									wall.prepend(html);
+					        } else $(".add-more").detach();
+					    })
+
 				});
 			});
-			
 		</script>
 			</div>
 		</div>
 	</section>
+
 	<footer></footer>
 	<div class="hidden"></div>
 
