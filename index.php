@@ -1,5 +1,4 @@
 <?
-
 session_start();
 $_SESSION['loader'] = 0;
 ?>
@@ -32,6 +31,7 @@ $_SESSION['loader'] = 0;
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/media.css">
 
+	<script src="https://use.fontawesome.com/c40b7447b3.js"></script>
 	<script src="libs/modernizr/modernizr.js"></script>
 	<script src="libs/jquery/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/freewall.js"></script>
@@ -42,10 +42,10 @@ $_SESSION['loader'] = 0;
 			.add-more {
 				margin: 15px;
 			}
-			.brick img {
+			/*.brick img {
 				width: 100%;
 				height: 100%;
-			}
+			}*/
 	</style>
 
 </head>
@@ -85,8 +85,33 @@ $_SESSION['loader'] = 0;
 			    
 			</div>
 		<div id="freewall" class="free-wall">
-			
-			
+			<!--
+		<div class="brick size11 gall_item gitem square">
+			<img src="img/prevew-project.jpg" alt="Alt">
+			<div class="item_cont">
+				<span class="gal_veiw"><i class="fa fa-eye" aria-hidden="true"></i></span>
+				<span class="gal_link"><i class="fa fa-link" aria-hidden="true"></i></span>
+				<h2>Lorem</h2>
+			</div>
+		</div>
+		<div class="brick size11 gall_item gitem square">
+			<img src="img/prevew-project.jpg" alt="Alt">
+			<div class="item_cont">
+				<span class="gal_veiw"><i class="fa fa-eye" aria-hidden="true"></i></span>
+				<span class="gal_link"><i class="fa fa-link" aria-hidden="true"></i></span>
+				<h2>Lorem</h2>
+			</div>
+		</div>
+		<div class="brick size11 gall_item gitem square">
+			<img src="img/prevew-project.jpg" alt="Alt">
+			<div class="item_cont">
+				<span class="gal_veiw"><i class="fa fa-eye" aria-hidden="true"></i></span>
+				<span class="gal_link"><i class="fa fa-link" aria-hidden="true"></i></span>
+				<h2>Lorem</h2>
+			</div>
+		</div>
+-->
+
 		</div>
 		<div class="brick size11 add-more">
 			<div class='cover'>
@@ -127,7 +152,7 @@ $_SESSION['loader'] = 0;
 				});
 				wall.fitWidth();
 
-				var temp = '<div class="brick {size}" style="background-color: {color}">{content}</div>';
+				var temp = '<div class="brick {size} gall_item gitem square " style="background-color: {color}">{content}</div>';
 				var size = "size33 size22 size11".split(" ");
 				$(".add-more").click(function() {
 					var html = "";
@@ -139,6 +164,16 @@ $_SESSION['loader'] = 0;
 					            html += temp.replace('{size}', size[size.length * Math.random() << 0])
 									.replace('{content}', data);
 									wall.prepend(html);
+
+								var $container = $(".masonry-container");
+							    $container.imagesLoaded(function () {
+							        $container.masonry({
+							            columnWidth: ".item",
+							            itemSelector: ".item"
+							        });
+							        $(".item").imagefill();
+							    });
+							    $(".gitem").imagefill();
 					        } else $(".add-more").detach();
 					    })
 
@@ -148,7 +183,6 @@ $_SESSION['loader'] = 0;
 			</div>
 		</div>
 	</section>
-
 	<footer></footer>
 	<div class="hidden"></div>
 
@@ -167,9 +201,14 @@ $_SESSION['loader'] = 0;
 	<script src="libs/animate/animate-css.js"></script>
 	<script src="libs/plugins-scroll/plugins-scroll.js"></script>
 	
+	<script src="libs/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="libs/imagefill/jquery-imagefill.js"></script>
+    <script src="libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="libs/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+
 	<script src="js/common.js"></script>
 	
-
+	
 
 	
 

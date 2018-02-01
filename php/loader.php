@@ -36,11 +36,11 @@ session_start();
              */
                 if( $_SESSION['loader'] == 19) exit('end');
             
-            
+            //$data->link
             foreach(array_slice($media->data, $_SESSION['loader'], $limit) as $data) {
-                $result ='<img src="'. $data->images->low_resolution->url . '" />';
+    $result ='<img src="'. $data->images->low_resolution->url . '" /><div class="item_cont"><span class="gal_veiw"><i class="fa fa-eye" aria-hidden="true"></i></span><span class="gal_link"><i class="fa fa-link" aria-hidden="true"></i></span><h2>Lorem</h2></div>';
                 echo  $result;
-                //echo '</div>';
+                //echo '
             }
             $_SESSION['loader'] += 1;
 

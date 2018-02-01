@@ -35,6 +35,10 @@ $(function() {
 
 	};
 
+
+	
+
+
 	$("img, a").on("dragstart", function(event) { event.preventDefault(); });
 	
 });
@@ -44,4 +48,15 @@ $(window).load(function() {
 	$(".loader_inner").fadeOut();
 	$(".loader").delay(400).fadeOut("slow");
 
+
+	//masonry
+    var $container = $(".masonry-container");
+    $container.imagesLoaded(function () {
+        $container.masonry({
+            columnWidth: ".item",
+            itemSelector: ".item"
+        });
+        $(".item").imagefill();
+    });
+    $(".gitem").imagefill();
 });
